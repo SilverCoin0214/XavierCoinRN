@@ -13,7 +13,7 @@
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-vector-icons": "^8.1.0",
-    "uuid": "^3.4.0", //jsdf
+    "uuid": "^3.4.0",
     "uuidv4": "^5.0.1"
   },
   "devDependencies": {
