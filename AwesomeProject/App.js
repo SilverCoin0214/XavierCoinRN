@@ -2,6 +2,8 @@ import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 import {StackNavigator, TabNavigator} from 'react-navigation';
 
+import MyTabNavigator from './components/MyTabNavigator';
+
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Welcome',
@@ -22,9 +24,23 @@ class HomeScreen extends React.Component {
 }
 
 class ChatScreen extends React.Component {
-  static navigationOptions = ({navigation}) => ({
-    title: `Chat with ${navigation.state.params.user}`,
-  });
+  static navigationOptions = ({navigation}) => {
+    const {state, setParams} = navigation;
+    const isInfo = state.params.mode === 'info';
+    const {user} = state.params;
+
+    return {
+      title: isInfo
+        ? `${user}'s Contact info`
+        : `Chat with ${state.params.user}`,
+      headerRight: (
+        <Button
+          title={isInfo ? 'Done' : `${user}'s info`}
+          onPress={() => setParams({mode: isInfo ? 'none' : 'info'})}
+        />
+      ),
+    };
+  };
 
   render() {
     const {params} = this.props.navigation.state;
@@ -70,9 +86,23 @@ const MainScreenNavigator = TabNavigator({
   All: {screen: AllContactsScreen},
 });
 
+class NavigatorWrappingScreen extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text>这个是组件</Text>
+        <MainScreenNavigator navigation={this.props.navigation} />
+      </View>
+    );
+  }
+}
+
+NavigatorWrappingScreen.router = MainScreenNavigator.router;
+
 const SimpleApp = StackNavigator({
   Home: {
     screen: MainScreenNavigator,
+    // screen: MyTabNavigator,
     navigationOptions: {
       title: 'My chats',
     },
