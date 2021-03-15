@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import actions from '../action';
 
 class FavoritePage extends Component {
+
   render() {
     const {navigation} = this.props;
     return (

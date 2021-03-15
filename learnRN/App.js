@@ -24,6 +24,7 @@ import Demo11 from './components/Demo11';
 import Demo12 from './components/Demo12';
 import Demo13 from './components/Demo13';
 import Demo14 from './components/Demo14';
+import Demo15 from './components/Demo15';
 
 import EditInfoScreen from './components/EditInfoScreen';
 
@@ -170,6 +171,12 @@ class RecentChatsScreen extends React.Component {
             style={styles.button}>
             <Text style={styles.buttonText}>Demo13: AsyncStorage相关</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => navigate('Demo15')}
+            style={styles.button}>
+            <Text style={styles.buttonText}>Demo14: AsyncStorage相关</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     );
@@ -261,6 +268,7 @@ const Route = StackNavigator({
   Demo12: {screen: Demo12},
   Demo13: {screen: Demo13},
   Demo14: {screen: Demo14},
+  Demo15: {screen: Demo15},
   EditInfoScreen: {screen: EditInfoScreen},
 });
 
